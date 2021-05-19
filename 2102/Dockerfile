@@ -1,7 +1,11 @@
-FROM nvcr.io/nvidia/pytorch:20.03-py3
+FROM nvcr.io/nvidia/pytorch:21.02-py3
 # https://docs.nvidia.com/deeplearning/frameworks/pytorch-release-notes/
 
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Asia/Seoul
+
 RUN apt-get update && apt-get install -y \
+    tzdata \
     zsh \
     git \
     emacs \
@@ -9,6 +13,7 @@ RUN apt-get update && apt-get install -y \
     htop \
     tmux \
     language-pack-en
+
 
 # set locale
 RUN locale-gen en_US.utf8 \
@@ -28,7 +33,8 @@ RUN echo -e 'set -g default-terminal "screen-256color"\nunbind C-b\nset-option -
 # jupyter lab settings + epc and virtualenv for emacs
 RUN pip install jupyterlab==2.2.9
 RUN pip install --upgrade jupyter-tensorboard
-RUN conda install -y nodejs nb_conda
+RUN conda install -c conda-forge/label/cf202003 nodejs
+RUN conda install -y nb_conda
 RUN pip install ipywidgets epc virtualenv
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
 
