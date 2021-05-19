@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/pytorch:20.03-py3
+FROM nvcr.io/nvidia/pytorch:21.02-py3
 # https://docs.nvidia.com/deeplearning/frameworks/pytorch-release-notes/
 
 RUN apt-get update && apt-get install -y \
