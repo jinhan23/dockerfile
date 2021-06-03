@@ -12,7 +12,8 @@ RUN apt-get update && apt-get install -y \
     vim \
     htop \
     tmux \
-    language-pack-en
+    language-pack-en \
+    nginx
 
 # emacs27
 RUN add-apt-repository ppa:kelleyk/emacs
