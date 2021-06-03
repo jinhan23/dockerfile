@@ -8,12 +8,16 @@ RUN apt-get update && apt-get install -y \
     tzdata \
     zsh \
     git \
-    emacs \
+    software-properties-common \
     vim \
     htop \
     tmux \
     language-pack-en
 
+# emacs27
+RUN apt-get remove emacs --autoremove
+RUN add-apt-repository ppa:kelleyk/emacs
+RUN apt-get update && apt-get install -y emacs27
 
 # set locale
 RUN locale-gen en_US.utf8 \
