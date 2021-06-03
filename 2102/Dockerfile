@@ -34,8 +34,9 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
 RUN echo -e 'set -g default-terminal "screen-256color"\nunbind C-b\nset-option -g prefix C-q\nbind-key C-q send-prefix' > ~/.tmux.conf
 
 # jupyter lab settings + epc and virtualenv for emacs
-RUN pip install jupyterlab==2.2.9
-RUN pip install --upgrade jupyter-tensorboard
+RUN pip install jupyterlab==2.3.1
+RUN pip uninstall jupyter-tensorboard
+RUN pip install git+https://github.com/jinhan23/jupyter-tensorboard
 RUN conda install -c conda-forge/label/cf202003 nodejs
 RUN conda install -y nb_conda
 RUN pip install ipywidgets epc virtualenv
